@@ -13,7 +13,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::paginate(25);
+        $products = Product::latest()->paginate(25);
         return view('product.index', ['products' => $products]);
     }
 
@@ -39,7 +39,7 @@ class ProductController extends Controller
                 'quantity' => 'required|integer',
                 'type' => 'required|string|max:255',
                 'vendor' => 'required|string|max:255',
-                'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif',
             ]);
 
             if ($request->hasFile('image')) {
